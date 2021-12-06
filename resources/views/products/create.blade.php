@@ -32,3 +32,4 @@
     <a href="/products">商品一覧に戻る</a>
 </div>
 @endsection
+<!---->
