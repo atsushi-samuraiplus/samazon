@@ -36,6 +36,11 @@
     color: #191919;
 }
 
+.user-edit-label {
+  cursor: pointer;
+  cursor: hand;
+}
+
 @font-face {
   font-family: YuGo;
   src: local(YuGo-Medium),
