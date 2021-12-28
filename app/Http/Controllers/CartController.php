@@ -22,7 +22,6 @@ class CartController extends Controller
         
         foreach ($cart as $c) {
             $total += $c->qty * $c->price;
-            
         }
         
         return view('carts.index', compact('cart', 'total'));
