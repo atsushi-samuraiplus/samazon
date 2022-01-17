@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Product;
 use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
@@ -89,6 +90,12 @@ class ProductController extends Controller
         } else {
             $product->recommend_flag = false;
         }
+        if ($request->file('image') != null) {
+            $image = $request->file('image')->store('public/products');
+            $product->image = basename($image);
+        } else {
+            $product->image = '';
+        }
         if ($request->input('carriage') == 'on') {
             $product->carriage_flag = true;
         } else {
@@ -151,6 +158,12 @@ class ProductController extends Controller
             $product->recommend_flag = true;
         } else {
             $product->recommend_flag = false;
+        }
+        if ($request->hasFile('image')) {
+            $image = $request->file('image')->store('public/products');
+            $product->image = basename($image);
+        } else {
+            $product->image = '';
         }
         if ($request->input('carriage') == 'on') {
             $product->carriage_flag = true;
