@@ -93,8 +93,7 @@ class ProductController extends Controller
             $product->recommend_flag = false;
         }
         if ($request->file('image') != null) {
-            $image = $request->file('image')->store('public/products');
-            $product->image = basename($image);
+            $product->image = Storage::disk('s3')->putFile('public/products', $request->file('image'), 'public');
         } else {
             $product->image = '';
         }
@@ -162,8 +161,7 @@ class ProductController extends Controller
             $product->recommend_flag = false;
         }
         if ($request->hasFile('image')) {
-            $image = $request->file('image')->store('public/products');
-            $product->image = basename($image);
+            $product->image = Storage::disk('s3')->putFile('public/products', $request->file('image'), 'public');
         } else if (isset($product->image)) {
             // do nothing
         } else {
